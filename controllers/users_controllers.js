@@ -11,7 +11,11 @@ module.exports.profile  = function(req,res)
 
 //render signin page
 module.exports.signin =  function(req,res)
-{
+{   if(req.isAuthenticated())  //setting key for rendering pages
+    {
+       return res.redirect('/users/profile');
+    }
+
     res.render('user_sign_in',{
         title:"Signin"
     });
@@ -20,7 +24,12 @@ module.exports.signin =  function(req,res)
 
 //render signup page
 module.exports.signup =function(req,res)
-{
+{    
+    if(req.isAuthenticated())  //setting key for rendering sign up page
+    {
+       return res.redirect('/users/profile');
+    }
+
     res.render('user_sign_up',{
         title:"SignUp"
     });
@@ -28,7 +37,7 @@ module.exports.signup =function(req,res)
 
 //get the sign up data
 module.exports.create = function(req,res)
-{
+{    
     if(req.body.password!=req.body.confirm_password)
     {
         return res.render('back');
@@ -60,8 +69,14 @@ module.exports.create = function(req,res)
     });
 } 
 
-//sig in and create a session for user 
+//sign in and create a session for user 
 module.exports.createSession = function(req,res)
-{
+{   
+    return res.redirect('/');
+} 
 
+//sign out
+module.exports.destroySession = function(req,res)
+{   req.logout();
+    return res.redirect('/');
 }
