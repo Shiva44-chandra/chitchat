@@ -18,7 +18,7 @@ module.exports.create = function(req,res){
               // post.updateMany(comment);
                 post.comments.push(comment);
                 post.save(); //this functions saves data into database from RAM 
-
+                req.flash('success','Comment Published!');
                 res.redirect('/');
             });
         }
@@ -34,12 +34,12 @@ module.exports.destroy = function(req,res){
             comment.remove();
 
             Post.findByIdAndUpdate(postId,{$pull:{comments:req.params.id}},function(err,post)
-            {
+            {    req.flash('success','Comment is Removed!');
                 return res.redirect('back');
             })
         }
         else
-        {
+        {   req.flash('error','You cannont delete Comment');
             return res.redirect('back');
         }
     });
