@@ -4,7 +4,7 @@ const User = require('../models/users');
 
 module.exports.profile  = function(req,res)
 {
-    res.render('users',{
+    return res.render('users',{
         title:"users"
     });
 } 
@@ -15,11 +15,12 @@ module.exports.update = function(req,res)
     if(req.user.id == req.params.id)
     {
         User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
+            req.flash('success', 'Updated!');
             return res.redirect('back');
         });
     } 
     else
-    {
+    {   req.flash('error', 'Unauthorized!');
         return res.status(401).send('Unauthorized');
     }
 }
@@ -55,7 +56,7 @@ module.exports.signup =function(req,res)
 module.exports.create = function(req,res)
 {    
     if(req.body.password!=req.body.confirm_password)
-    {
+    {    req.flash('error', 'Passwords do not match');
         return res.render('back');
     }   
     
@@ -65,7 +66,7 @@ module.exports.create = function(req,res)
     function(err,user)
     {
         if(err)
-        {
+        {   req.flash('error', err);
             console.log('Error in finding user in signing up');
             return;
         } 
@@ -74,12 +75,12 @@ module.exports.create = function(req,res)
             User.create(req.body,function(err,user)
             {
                 if(err)
-                { console.log('Error in finding user in signing up');  return; } 
+                { req.flash('error', err); console.log('Error in finding user in signing up');  return; } 
                 return res.redirect('/users/sign-in');
             })
         } 
         else
-        {
+        {   req.flash('success', 'You have signed up, login to continue!');
             return res.redirect('back');
         }
     });
@@ -92,7 +93,7 @@ module.exports.createSession = function(req,res)
 } 
 
 //sign out
-module.exports.destroySession = function(req,res)
+module.exports.destroySession = function(req,res) 
 {   req.logout();
     req.flash('success','Logged out Successfully'); //toshow this msg in page every time we hae to pass it with locals like title instead use custom middle ware
     

@@ -10,6 +10,16 @@ module.exports.create = function(req,res)
    {
        if(err){console.log('error in creating a post');req.flash('error',err);return;} 
        
+       if(req.xhr) //checking weather req is ajax
+       {
+     return res.status(200).json({
+         data:{
+             post:post
+         },
+         message:"Post Created!"
+     });
+       }
+
        req.flash('success','Post Published!');
        return res.redirect('back');
    });
@@ -22,7 +32,18 @@ module.exports.destroy = function(req,res){
         {
             post.remove();
             Comment.deleteMany({post:req.params.id},function(err)
-            {   req.flash('success','Post & Associated comments deleted!');
+            {    
+                if(req.xhr)
+                {
+                    return res.status(200).json({
+                        data:{
+                            post_id:req.params.id
+                        },
+                        message:"Post Deleted"
+                    });
+                }
+                
+                req.flash('success','Post & Associated comments deleted!');
                 return res.redirect('back');
             });
         } 

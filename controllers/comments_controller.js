@@ -17,7 +17,18 @@ module.exports.create = function(req,res){
              //   if(err){console.log('Error in Adding Comment');return;}
               // post.updateMany(comment);
                 post.comments.push(comment);
-                post.save(); //this functions saves data into database from RAM 
+                post.save(); //this functions saves data into database from RAM  
+                if (req.xhr){
+                    // Similar for comments to fetch the user's id!
+                    comment.populate('user', 'name').execPopulate();
+        
+                    return res.status(200).json({
+                        data: {
+                            comment: comment
+                        },
+                        message: "Post created!"
+                    });
+                }
                 req.flash('success','Comment Published!');
                 res.redirect('/');
             });
@@ -34,7 +45,17 @@ module.exports.destroy = function(req,res){
             comment.remove();
 
             Post.findByIdAndUpdate(postId,{$pull:{comments:req.params.id}},function(err,post)
-            {    req.flash('success','Comment is Removed!');
+            {    
+                if (req.xhr){
+                    return res.status(200).json({
+                        data: {
+                            comment_id: req.params.id
+                        },
+                        message: "Post deleted"
+                    });
+                }
+                
+                req.flash('success','Comment is Removed!');
                 return res.redirect('back');
             })
         }

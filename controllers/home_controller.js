@@ -1,6 +1,6 @@
 const Post = require('../models/post');
 const  post  = require('../routes/posts');
-
+const User = require('../models/users');
 module.exports.home = function(req,res)
 {   //console.log(req.cookies); 
    /*Post.find({},function(err,posts)
@@ -27,6 +27,7 @@ module.exports.home = function(req,res)
     });
 }) */
 Post.find({})
+.sort('-createdAt')
 .populate('user')
 .populate({
     path: 'comments',
@@ -39,7 +40,7 @@ Post.find({})
         title: "Chitchat | Home",
         posts:  posts
     });
-})
+});
 
     
 } 
