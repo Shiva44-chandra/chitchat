@@ -1,13 +1,17 @@
 
 
 <link rel="stylesheet" href="/css/user_profile.css">
-  <h1> Users profile </h1>
+
+  <img src="<%= user.avatar %>" alt="<%= user.name %>"  width="100">
+
    <p> <%= user.name %> </p>
    <p> <%= user.email %> </p> 
 
-    <form action="/users/update/<%=user.id%>"  method="POST">
+    <form action="/users/update/<%=user.id%>" enctype="multipart/form-data"  method="POST">
             <input type="text" name="name" placeholder="Your Name" value="<%=user.name%>" required>
+            <input type="file" name="avatar" placeholder="profile picture">
             <input type="submit" value="Update">
             
     </form>
 
+ 
