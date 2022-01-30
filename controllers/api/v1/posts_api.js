@@ -30,8 +30,9 @@ module.exports.index = function(req,res)
 module.exports.destroy = function(req,res){
     Post.findById(req.params.id,function(err,post){
         // .id means converting the object id into string  
-        
-            post.remove();
+            if(post.user == req.user.id)
+            {
+               post.remove();
             Comment.deleteMany({post:req.params.id},function(err)
             {    
                 if(req.xhr)
@@ -49,6 +50,12 @@ module.exports.destroy = function(req,res){
                     message:"Post and associated comments deleted successfully!"
                 });
             });
-       
+        }
+        else
+        {
+            return res.json(401,{
+                message:"You cannot delete the post!"
+            });
+        }
     });
 }
