@@ -18,7 +18,7 @@ router.get('/sign-up',usersController.signup);
 
 router.post('/create',usersController.create);
 
-//use passportas a midleware to authenticate
+//use passport as a midleware to authenticate
 router.post('/create-session',passport.authenticate(
     'local',
     {
@@ -28,4 +28,9 @@ router.post('/create-session',passport.authenticate(
 
 
 router.get('/sign-out',usersController.destroySession);
+
+
+router.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}));
+router.get('/auth/google/callback',passport.authenticate('google',{failureRedirect:'/users/sigin-in'}),usersController.createSession);
+
 module.exports = router;
