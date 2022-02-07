@@ -1,5 +1,6 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
+const Like = require('../models/like');
 
 module.exports.create = function(req,res)
 {
@@ -12,7 +13,11 @@ module.exports.create = function(req,res)
        
        if(req.xhr) //checking weather req is ajax
        {
-     return res.status(200).json({
+         //  Post.findById(post._id).populate({path:'user',select:['name','email']}).exec(function(err,post){  
+           // console.log(post);
+        //    return;});
+
+        return res.status(200).json({
          data:{
              post:post
          },
@@ -29,7 +34,10 @@ module.exports.destroy = function(req,res){
     Post.findById(req.params.id,function(err,post){
         // .id means converting the object id into string  
         if(post.user == req.user.id)
-        {
+        {   
+            Like.deleteMany({likeable: post, onModel: 'Post'});
+            Like.deleteMany({_id: {$in: post.comments}});
+
             post.remove();
             Comment.deleteMany({post:req.params.id},function(err)
             {    

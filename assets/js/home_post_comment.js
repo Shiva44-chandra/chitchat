@@ -35,6 +35,8 @@ class PostComments{
                     let newComment = pSelf.newCommentDom(data.data.comment);
                     $(`#post-comments-${postId}`).prepend(newComment);
                     pSelf.deleteComment($(' .delete-comment-button', newComment));
+                    
+                    new ToggleLike($(' .toggle-like-button', newComment));
 
                     new Noty({
                         theme: 'relax',
@@ -69,6 +71,7 @@ class PostComments{
                             <small>
                                 ${comment.user.name}
                             </small>
+                            
                         </p>    
 
                 </li>`);
