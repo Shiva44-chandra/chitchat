@@ -7,5 +7,63 @@
 {
     width:70%;
     padding:10px;
-    border-right:1px solid lightseagreen;
+    border-right:1px solid lightseagreen;  
+    
+}  
+
+#home-container #feed-posts #forms
+{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#home-container #feed-posts #forms h4
+{
+    font-size:2rem;
+}
+
+#home-container #feed-posts #posts-list-container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+
+ul{
+    list-style: none;
+}
+.delete-post-button
+{
+     text-decoration: none;
+     color:red;
+} 
+
+#home-container #feed-posts #posts-list-container li p
+{
+    font-size:x-large;
+
+}
+
+#home-container #feed-posts #posts-list-container li small
+{
+    font-size: small;
+}
+
+#home-container #feed-posts #posts-list-container .post-comments .post-comments-list li p
+{
+    font-size: large;
+}
+
+#home-container #feed-posts #posts-list-container .post-comments .post-comments-list li small
+{
+    font-size: x-small;
+} 
+
+.delete-comment-button
+{
+    text-decoration: none;
+     color:red;
 }

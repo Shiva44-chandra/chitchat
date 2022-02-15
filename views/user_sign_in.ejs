@@ -1,15 +1,38 @@
+<html>
 
-       <h1>Sign In</h1> 
-       
-       <form action="/users/create-session" method="post">
-           <input type="email" name="email" placeholder="Email" required>
-           <input type="password" name="password" placeholder="Password" required> 
-           <input type="submit" value="Sign In">
+<head>
+<link rel="stylesheet" href="/css/user_signin.css">
+
+<body>
+
+ <div id="login-box">
+     
+         <form action="/users/create-session" method="post">
+            
+              <div class="logo"> <h1 class="logo-caption"><span class="tweak">L</span>ogin</h1> </div>
+               
+              <div class="controls">
+            
+                <input type="email" name="email" placeholder="Email" class="form-control" required>
+                
+                <input type="password" name="password" placeholder="Password" class="form-control" required> 
+                
+                <input type="submit" value="Sign In" class="btn btn-default btn-block btn-custom">
+             
+               </div>
            
-
-       </form>
-      
-       <p>
-          <a href="/users/auth/google">Google Sign In/Sign Up</a>
+         </form>
+             
+        <p class="here"> dont you have account ? <a href="/users/sign-up" class="btn btn-default btn-block btn-custom">Sign Up</a></p>
+            
+       <p class="goog">
+          <a href="/users/auth/google" class="btn btn-default btn-block btn-custom">Google Sign In/Sign Up</a>
        </p>
-   
+      </div>
+        
+
+       <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css'></script>
+      
+
+       </body>
+       </html>

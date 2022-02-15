@@ -1,19 +1,37 @@
 <html>
     <head>
+        <link rel="stylesheet" href="/css/user_signup.css">
 
     </head>
 
     <body>
-        <h1> Sign Up </h1>
+        <div id="login-box">
+
+        
         <form action="/users/create" method="post">
+
+            <div class="logo"> <h1 class="logo-caption"><span class="tweak">S</span>ignup</h1> </div>
+               
+            <div class="controls">
+
             <input type="text" name="name" placeholder="Your Name" required>
+
             <input type="email" name="email" placeholder="Your Email" required>
+
             <input type="password" name="password" placeholder="Password" required>
+
             <input type="password" name="confirm_password" placeholder="confirm Password" required>
-            <input type="submit" value="Sign Up">
+             
+            <input type="submit" value="Sign Up" class="btn btn-default btn-block btn-custom">
+
+            </div>
         </form>
-        <p>
-            <a href="/users/auth/google">Google Sign In/Sign Up</a>
-        </p>
+        
+        <p class="goog">
+
+            <a href="/users/auth/google" class="btn btn-default btn-block btn-custom">Google Sign In/Sign Up</a>
+        </p> 
+
+        </div>
     </body>
 </html>

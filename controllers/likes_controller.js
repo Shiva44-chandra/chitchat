@@ -28,9 +28,9 @@ module.exports.toggleLike = async function(req,res)
          likeable:req.query.id,
          onModel:req.query.type,
          user:req.user._id
-     })
+     });
    
-
+  console.log(existingLike);
      //if like already exists
        
      if(existingLike)
@@ -58,7 +58,7 @@ module.exports.toggleLike = async function(req,res)
          data:{
              deleted:deleted
          }
-     })
+     });
 
    }catch(err)
    {
