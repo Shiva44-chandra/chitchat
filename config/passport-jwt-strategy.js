@@ -4,11 +4,12 @@ const ExtractJWT = require('passport-jwt').ExtractJwt;
 
 const User = require('../models/users');
 
+const env = require('./environment');
 
 
 let opts = {
     jwtFromRequest:ExtractJWT.fromAuthHeaderAsBearerToken(),
-    secretOrKey:'chitchat'
+    secretOrKey:env.jwt_secret
 } 
 
 passport.use(new JWTStrategy(opts,function(jwtPayLoad,done){
