@@ -1,0 +1,38 @@
+
+#header-layout nav 
+{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  background: lightseagreen;
+  color: white;
+  box-shadow: 1px 1px 1px 1px lightgrey;
+
+}  
+
+#header-layout nav .logo
+{
+   margin: 5px;
+   font-size: 1.4rem;
+  font-weight: bold; 
+  text-transform: capitalize;
+} 
+
+#header-layout nav .auth-links ul
+{
+  margin: 5% 5px;
+  display: flex;
+  list-style: none;
+
+} 
+
+#header-layout nav .auth-links ul li
+{
+  margin-right: 10px;
+} 
+
+#header-layout nav a
+{
+  text-decoration: none;
+  color: white;
+}
