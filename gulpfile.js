@@ -8,11 +8,11 @@ const del = require('del');
 
 gulp.task('css',function(done){
     console.log('minifying CSS...');
-    gulp.src('./assets/CSS/**/*.css')
-    .pipe(cssnano())
-    .pipe(gulp.dest('./assets.css'));
+   // gulp.src('./assets/CSS/**/*.css')
+  //  .pipe(cssnano())
+   // .pipe(gulp.dest('./assets.css'));
 
-    return gulp.src('./assets/**/*.css')
+    gulp.src('./assets/**/*.css')
     .pipe(rev())
     .pipe(gulp.dest('./public/assets'))
     .pipe(rev.manifest({

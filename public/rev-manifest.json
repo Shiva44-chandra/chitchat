@@ -1,9 +1,5 @@
 {
-  "CSS/footer.css": "CSS/footer-70094e4dbe.css",
-  "CSS/header.css": "CSS/header-2a9846d574.css",
-  "CSS/home.css": "CSS/home-4f3a443529.css",
-  "CSS/layout.css": "CSS/layout-7d35d21657.css",
-  "CSS/user_profile.css": "CSS/user_profile-351da7a5ba.css",
-  "CSS/user_signin.css": "CSS/user_signin-26a1326896.css",
-  "CSS/user_signup.css": "CSS/user_signup-20c71bdfe7.css"
+  "js/home_post_comment.js": "js/home_post_comment-e7897f0bfe.js",
+  "js/home_posts.js": "js/home_posts-f3a26d9ca0.js",
+  "js/toggle_likes.js": "js/toggle_likes-0e3d81481c.js"
 }
